@@ -1,20 +1,13 @@
-import { Container, interfaces } from 'inversify';
 import 'reflect-metadata';
+import { Container, interfaces } from 'inversify';
 import { IGetTopStoriesUseCase } from '../application/usecases/IGetTopStoriesUseCase';
 import { GetTopStoriesUseCase } from '../application/usecases/GetTopStoriesUseCase';
 import { IStoryService } from '../application/services/IStoryService';
 import { StoryService } from '../application/services/StoryService';
 import { IStoryRepository } from '../domain/repositories/IStoryRepository';
-import { StoryRepository } from '../domain/repositories/StoryRepository';
-import { InMemoryStoryRepository } from './repositories/InMemoryStoryRepository';
 import { RemoteStoryRepository } from './repositories/RemoteStoryRepository';
 import React, { useContext } from 'react';
-
-export const TYPES = {
-  IGetTopStoriesUseCase: Symbol.for('IGetTopStoriesUseCase'),
-  IStoryService: Symbol.for('IStoryService'),
-  IStoryRepository: Symbol.for('IStoryRepository'),
-};
+import { TYPES } from '../types';
 
 const container = new Container();
 

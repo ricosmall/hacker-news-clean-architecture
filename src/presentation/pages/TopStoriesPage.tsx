@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import AppHeader from '../components/AppHeader';
 import StoryList from '../components/StoryList';
 import { useInject } from '../../infrastructure/container';
-import { TYPES } from '../../infrastructure/container';
 import { IGetTopStoriesUseCase } from '../../application/usecases/IGetTopStoriesUseCase';
 import { Story } from '../../domain/entities/Story';
+import { TYPES } from '../../types';
 
 const TopStoriesPage: React.FC = () => {
   const [loading, setLoading] = useState(true);

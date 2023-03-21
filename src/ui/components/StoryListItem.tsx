@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story } from '../../domain/entities/Story';
+import { Story } from '../../domain/entities/story';
 
 interface Props {
   story: Story;

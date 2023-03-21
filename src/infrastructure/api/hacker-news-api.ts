@@ -1,21 +1,23 @@
 import axios, { AxiosResponse } from 'axios';
-import { Story } from '../../domain/entities/Story';
+import { injectable } from 'inversify';
+import { Story } from '../../domain/entities/story';
 
-const HACKER_NEWS_API_BASE_URL = 'https://hacker-news.firebaseio.com/v0/';
-
+@injectable()
 export class HackerNewsApi {
-  private static async get<T>(endpoint: string): Promise<T> {
+  constructor(private readonly baseUrl: string) {}
+
+  private async get<T>(endpoint: string): Promise<T> {
     const response: AxiosResponse = await axios.get(
-      `${HACKER_NEWS_API_BASE_URL}${endpoint}.json`
+      `${this.baseUrl}${endpoint}.json`
     );
     return response.data;
   }
 
-  static async getTopStories(): Promise<number[]> {
+  async getTopStories(): Promise<number[]> {
     return await this.get<number[]>('topstories');
   }
 
-  static async getStoryById(storyId: number): Promise<Story> {
+  async getStoryById(storyId: number): Promise<Story> {
     const story: any = await this.get(`item/${storyId}`);
     return new Story(
       story.id,
